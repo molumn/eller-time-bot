@@ -2,7 +2,7 @@ name: Heroku-Stop
 on:
   schedule: 
     - cron: "0 11 * * *" # timezone : Asia/Sepul  --  UTF +9:00
-  workflow_dispatch
+  workflow_dispatch:
 
 
 jobs:
