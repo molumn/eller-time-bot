@@ -1,6 +1,6 @@
 import Commands from "../../structures/ICommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { GuildChannel, TextChannel } from "discord.js";
+import {TextChannel} from "discord.js";
 
 
 export = new Commands(
@@ -14,19 +14,19 @@ export = new Commands(
     async (client, interaction) => {
         let amount = interaction.options.getNumber("amount");
         if(amount === null) {
-            amount = 0
-            interaction.followUp(`no amout!`);
+            await interaction.followUp(`no amount!`);
             return;
         }
         
         if(amount >= 0) {
             try {
-                (interaction.channel as TextChannel).bulkDelete(amount + 1) //with last message of replying to this command
+                await (interaction.channel as TextChannel).bulkDelete(amount + 1);
             } catch (err) {
-                interaction.followUp(`callback error: ${err}`)
+                await interaction.followUp(`callback error: ${err}`)
             }
         } else {
-            interaction.followUp(`amount should be positive number, not : ${amount}`)
+            await interaction.followUp(`amount should be positive number, not : ${amount}`)
+            // todo : clear all
         }
     }
 )
