@@ -25,8 +25,8 @@ export = new Commands(
                 await interaction.followUp(`callback error: ${err}`)
             }
         } else {
-            await interaction.followUp(`amount should be positive number, not : ${amount}`)
-            // todo : clear all
+            const all = (interaction.channel as TextChannel).messages.cache.size
+            await (interaction.channel as TextChannel).bulkDelete(all);
         }
     }
 )
